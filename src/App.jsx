@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css'
+import './App.css';
 
 // This component renders the filterable product table with the search bar and product table components.
 function FilterableProductTable({ products }) {
@@ -9,8 +9,19 @@ function FilterableProductTable({ products }) {
 
   // Render the search bar and product table components with their respective props.
   return (
-    <div>
-      <h1>Stock Details</h1>
+    <div className="main">
+      <h4>Stock Details</h4>
+      <div className="promo">
+        <div className="blinking-text">Summer Sale is Live!</div>
+        <span>
+          <marquee>
+            <i>
+              Buy now pay later is now available in all regions. Conditions
+              Apply *.
+            </i>
+          </marquee>
+        </span>
+      </div>
       <SearchBar
         filterText={filterText}
         inStockOnly={inStockOnly}
@@ -22,8 +33,24 @@ function FilterableProductTable({ products }) {
         filterText={filterText}
         inStockOnly={inStockOnly}
       />
+
+      <p className="copyright">Future garden inc. copyright©2023</p>
     </div>
   );
+}
+
+function Button() {
+  return <button>Buy Now</button>;
+}
+
+function Navbar() {
+  return(
+    <nav className="navbar bg-body-tertiary">
+    <div className="container-fluid">
+      <a className="navbar-brand">Future Garden</a>
+    </div>
+  </nav>
+  )
 }
 
 // This component renders a row for each product category.
@@ -127,6 +154,12 @@ const PRODUCTS = [
   { category: 'Vegetables', price: '$1', stocked: true, name: 'Peas' },
 ];
 
+// This is the default component which returns the main component FilterableProductTable
 export default function App() {
-  return <FilterableProductTable products={PRODUCTS} />;
+  return (
+    <>
+      <Navbar />
+      <FilterableProductTable products={PRODUCTS} />
+    </>
+  );
 }
